@@ -1,0 +1,56 @@
+/// Simple 'Hello, world' program
+/**
+ * This program prints "Hello, world" to the LCD screen
+ * @author Chad Nelson
+ * @date 06/26/2012
+ *
+ * updated: phjones 9/3/2019
+ * Describtion: Added timer_init call, and including Timer.h
+ */
+
+#include "Timer.h"
+#include "lcd.h"
+#include <stdio.h>
+#include <string.h>
+
+
+
+int main (void) {
+
+	timer_init(); // Initialize Timer, needed before any LCD screen fucntions can be called 
+	              // and enables time functions (e.g. timer_waitMillis)
+
+	lcd_init();   // Initialize the the LCD screen.  This also clears the screen. 
+	lcd_setCursorPos(20,0);
+
+	// Clear the LCD screen and print "Hello, world" on the LCD
+	int i, n;
+	char text[17] = "Hello Good World";
+	char c;
+	        for (n = 0; n < 16; n++) {
+	                lcd_printf("%s", text);
+	                timer_waitMillis(300);
+	                // do the string shuffle
+	                c = text[15]; // take copy of the right most character
+	                // shuffle all the others one place to the right
+	                for (i = 15; i > 0; i--) {
+	                        text[i] = text[i - 1];
+	                }
+	                // put the saved character at the start
+	                text[0] = c;
+	                // just in case it's disturbed
+	                text[16] = 0; // end of string marker
+	        }
+
+	// lcd_puts("Hello, world");// Replace lcd_printf with lcd_puts
+                                 // step through in debug mode
+                                 // and explain to TA how it
+                                 // works
+
+
+    
+	// NOTE: It is recommended that you use only lcd_init(), lcd_printf(), lcd_putc, and lcd_puts from lcd.h.
+    // NOTE: For time fuctions see Timer.h
+
+	return 0;
+}

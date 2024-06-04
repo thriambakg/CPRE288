@@ -1,0 +1,40 @@
+/*
+ *
+ *  Created on: 10/29/2020
+ *      Author: Group s3-b
+ */
+
+#include "ir.h"
+#include "lcd.h"
+#include "adc.h"
+#include "ping (1).h"
+#include "servo.h"
+#include "timer.h"
+#include "uart.h"
+#include <inc/tm4c123gh6pm.h>
+#include <math.h>
+#include <stdlib.h>
+#include "resetSimulation.h"
+
+#define NUM_SAMPLES 10
+
+int main(void) {
+  lcd_init();
+  timer_init();
+  //ping_init();
+  adc_init();
+  uart_init(115200);
+  //resetSimulationBoard();
+
+  while (1)
+  {
+    char str[100];
+    int irDistance = adc_read();
+    //double pingDistance = ping_read(100);
+//    sprintf(str, " Distance: %.2f, %.2f \n\r", irDistance, pingDistance);
+//    sprintf(str, " Distance: %d \n\r", irDistance);
+//    uart_sendStr(str);
+    lcd_printf("Distance: %d", 20);
+    timer_waitMillis(10);
+  }
+}

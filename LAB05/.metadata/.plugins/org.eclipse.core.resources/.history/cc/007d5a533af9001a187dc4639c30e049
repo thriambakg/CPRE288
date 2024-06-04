@@ -1,0 +1,29 @@
+/**
+ * lab3_template.c
+ * 
+ * Template file for CprE 288 lab 3
+ *
+ * @author Zhao Zhang, Chad Nelson, Zachary Glanz
+ * @date 08/14/2016
+ */
+
+#include "lcd.h"
+#include "button.h"
+#include "resetSimulation.h"
+#include "cyBot_uart.h"
+/**
+ * main.c
+ * Prints the button that has been pressed
+ */
+int main(void) {
+
+    // Hint: You may need to use pointers to return the button that has been pressed
+//    lcd_init();
+//    button_init();
+//    init_button_interrupts();
+
+    cyBot_uart_init();
+
+
+
+}

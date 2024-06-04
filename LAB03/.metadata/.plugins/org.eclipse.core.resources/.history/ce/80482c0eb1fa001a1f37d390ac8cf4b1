@@ -1,0 +1,35 @@
+/*
+ * movement.c
+ *
+ *  Created on: Sep 8, 2020
+ *      Author: trg1
+ */
+
+#include "open_interface.h"
+
+ void move_forward(void){
+    oi_setWheels(300,300); //move forward full speed, 500mm/s
+    return;
+}
+
+void move_backward(void){
+    oi_setWheels(-300,-300); //move backward
+
+    return;
+}
+
+void turn_left(void){
+    oi_setWheels(-150,150);//turn right
+    return;
+}
+
+void turn_right(void){
+    oi_setWheels(150,-150);//turn left
+    return;//stop moving
+}
+
+void bot_stop(void){
+    oi_setWheels(0,0); //stop moving
+
+    return;
+}

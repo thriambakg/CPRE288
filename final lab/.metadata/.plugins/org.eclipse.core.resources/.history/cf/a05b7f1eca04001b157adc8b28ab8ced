@@ -1,0 +1,121 @@
+*
+ * move.c
+ *
+ *  Created on: Sep 3, 2020
+ *      Author: jmonty
+ */
+
+
+#include "move.h"
+
+/**
+ * move forward (in centimeters)
+ */
+void move_forward(oi_t *sensor, int centimeters){
+    int sum = 0;
+
+    if(centimeters > 0){
+        // full speed ahead!
+        oi_setWheels(300,300);
+
+        while(sum < centimeters * 10){
+            oi_update(sensor);
+
+            //examine distance sensor to move forward delineated quantity
+            sum += sensor -> distance;
+
+        }
+        //stop after movement complete
+        oi_setWheels(0,0);
+    }
+}
+
+/**
+ * turn clockwise (wheels)
+ */
+void turn_right(oi_t *sensor, int degrees){
+    double sum = 0;
+
+    if(degrees > 0){
+        // right turn
+        oi_setWheels(100, -100);
+
+        while(sum < degrees){
+            oi_update(sensor);
+            // fix error
+            sum = sum + (sensor -> angle);
+        }
+        // Reset wheels back  to 0,0 to start going straight again
+        oi_setWheels(0, 0);
+    }
+}
+
+/**
+ * turn counterclockwise (wheels)
+ */
+void turn_left(oi_t *sensor, int degrees){
+    double sum = 0;
+
+    if(degrees > 0){
+        // right turn
+        oi_setWheels(-100, 100);
+
+        while(sum < degrees){
+            oi_update(sensor);
+            // fix error
+            sum = sum + - (sensor -> angle);
+        }
+        // Reset wheels back  to 0,0 to start going straight again
+        oi_setWheels(0, 0);
+    }
+}
+
+/**
+ * Back up 15CM
+ */
+void backup(oi_t* sensor){
+    oi_setWheels(-300, -300);
+    int backup = 0;
+    while(backup < 150){
+        oi_update(sensor);
+        backup -= sensor-> distance;
+    }
+}
+
+/**
+ * Collision sensing
+ */
+void collision_check(oi_t* sensor, int dis){
+    int sum = 0;
+    int total = dis;
+    int backcnt = 0;
+
+    if(dis > 0){
+
+        while(sum < dis*10){
+            oi_setWheels(300, 300);
+            oi_update(sensor);
+            sum += sensor -> distance;
+            //for left or front bumps
+            if(sensor -> bumpLeft == 1 && sensor -> bumpRight ==0  ||sensor -> bumpLeft == 1 && sensor -> bumpRight ==1){// If left or both are bumped
+                backup(sensor);
+                turn_right(sensor, 85);
+                move_forward(sensor, 25);
+                turn_left(sensor, 85);
+                //subtract backup distance from total
+                sum -= 150;
+            }
+
+            //for right bumps
+            if(sensor -> bumpLeft == 0 && sensor -> bumpRight == 1){
+                backup(sensor);
+                turn_left(sensor, 85);
+                move_forward(sensor, 25);
+                turn_right(sensor, 85);
+                //subtract backup distance from total
+                sum -= 150;
+            }
+        }
+        oi_setWheels(0,0);
+    }
+}

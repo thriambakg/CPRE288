@@ -1,0 +1,57 @@
+/*
+ * Part1Main.c
+ *
+ *  Created on: Oct 29, 2020
+ *      Author: trg1
+ */
+#include "Timer.h"
+#include "lcd.h"
+#include "button.h"
+#include "resetSimulation.h"
+#include "open_interface.h"
+#include <math.h>
+#include "ping.h"
+#include "servo.h"
+#include "adc.h"
+#include "uart_extra_help.h"
+
+void main()
+{
+    float getDist(int i)
+        {
+            float dist;
+            // calibrate our distance to our line of best fit from our test data -- PROBABLY MUST FIX THESE BUSTED VALUES AFTER MANUAL CALIBRATION?
+            dist = 96369 * pow(i, -1.139) +1;
+            return dist;
+        }
+
+    //BONUS - AUTOMATIC CALIBRATION (BONUS PART 3)
+        int main(void) //part 1 seems to work, part 2 getDist doesn't work yet b/c we need the line of best fit from test data
+        {
+            //inits
+            lcd_init();
+            adc_init();
+            uart_init(115200);
+            timer_waitMillis(500);
+            //send data headers
+            uart_sendStr("quantized, estimated distance\n\r");
+
+            int i;
+            for(i = 0; i < 20; ++i){
+
+                //Get result from adc_read
+                int fifo_result = adc_read();
+                //Convert analog value to distance (cm)
+                float distance = getDist(fifo_result);
+                char vals[80];
+                sprintf(vals, "%d, %.2f cm\n\r", fifo_result, distance);
+                uart_sendStr(vals); // sent string to putty using uart
+                timer_waitMillis(1000); // wait 500 milliseconds
+            }
+
+        }
+
+}
+
+
+

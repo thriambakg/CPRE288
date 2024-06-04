@@ -1,0 +1,39 @@
+/*
+ * s3-b_Scan.c
+ *
+ *  Created on: Oct 31, 2020
+ *      Author: trg1
+ */
+
+#include "ir.h"
+#include "lcd.h"
+#include "adc.h"
+#include "ping (1).h"
+#include "servo.h"
+#include "timer.h"
+#include "uart.h"
+#include <inc/tm4c123gh6pm.h>
+#include <math.h>
+#include <stdlib.h>
+#include "resetSimulation.h"
+#include "s3-b_Scan.h"
+
+
+
+void s3-b_ScanInit(void)
+{
+    adc_init();
+    servo_init();
+    ping_init();
+    return;
+}
+
+void cyBOT_Scan(int angle, s3-b_Scan_t* getScan)
+{
+    servo_move(double angle);
+
+    double irdist = adc_read();
+    return;
+
+}
+

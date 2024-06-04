@@ -1,0 +1,38 @@
+/*
+ * s3-b_Scan.c
+ *
+ *  Created on: Oct 31, 2020
+ *      Author: trg1
+ */
+
+#include "ir.h"
+#include "lcd.h"
+#include "adc.h"
+#include "ping (1).h"
+#include "servo.h"
+#include "timer.h"
+#include "uart.h"
+#include <inc/tm4c123gh6pm.h>
+#include <math.h>
+#include <stdlib.h>
+#include "resetSimulation.h"
+#include "s3-b_Scan.h"
+
+
+void s3-b_init(void)
+{
+    timer_init();
+    ping_init();
+    adc_init();
+}
+
+//moves by an angle
+double s3-b_Scan(int angle)
+{
+    servo_move(angle);
+
+    double irdist = adc_read();
+    return irdist;
+
+}
+

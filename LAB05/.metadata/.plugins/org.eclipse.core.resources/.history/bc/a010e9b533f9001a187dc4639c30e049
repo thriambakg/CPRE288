@@ -1,0 +1,34 @@
+/**
+ * lab3_template.c
+ * 
+ * Template file for CprE 288 lab 3
+ *
+ * @author Zhao Zhang, Chad Nelson, Zachary Glanz
+ * @date 08/14/2016
+ */
+
+#include "lcd.h"
+#include "button.h"
+
+/**
+ * main.c
+ * Prints the button that has been pressed
+ */
+int main(void) {
+    char array[] = "hello";
+    // Hint: You may need to use pointers to return the button that has been pressed
+    lcd_init();
+    button_init();
+    init_button_interrupts();
+
+    //checkpoint 1
+
+       // lcd_puts(array);
+
+
+    //checkpoint 3
+//    while(1==1){
+//        if(button_event == 1)
+//            lcd_printf("%d", button_num);
+//    }
+}

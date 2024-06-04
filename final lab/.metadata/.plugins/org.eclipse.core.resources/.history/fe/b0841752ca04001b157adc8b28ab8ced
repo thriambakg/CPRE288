@@ -1,0 +1,22 @@
+/*
+ * move.h
+ *
+ *  Created on: Sep 3, 2020
+ *      Author: jmonty
+ */
+
+#ifndef MOVE_H_
+#define MOVE_H_
+
+
+#include "open_interface.h"
+
+void move_forward(oi_t *sensor, int centimeters);
+void turn_right(oi_t *sensor, int degrees);
+void turn_left(oi_t *sensor, int degrees);
+void backup(oi_t *sensor);
+void collision_check(oi_t* sensor, int dis);
+void collision();
+
+
+#endif /* MOVE_H_ */

@@ -1,0 +1,18 @@
+
+/**
+ * lab7_main.c
+ */
+
+//note, may also need to add .c and .h files for averaging functionality (part 2) and file creation functionality (part 3)
+#include "lcd.h"
+#include "uart_extra_help.h"
+#include "button.h"
+#include "adc.h"
+#include "timer.h"
+
+int main(void){//INCOMPLETE FOR ALL 3 PARTS
+    lcd_init();
+    timer_init();
+    uart_init(115200);
+    //must add functionality for all three parts
+}

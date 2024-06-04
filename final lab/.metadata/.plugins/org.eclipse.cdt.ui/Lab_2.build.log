@@ -1,0 +1,47 @@
+
+**** Build of configuration Debug for project Lab_2 ****
+
+"C:\\ti\\ccs1010\\ccs\\utils\\bin\\gmake" -k -j 8 all -O 
+ 
+Building file: "../Anothermain.c"
+Invoking: ARM Compiler
+"C:/ti/ccs1010/ccs/tools/compiler/ti-cgt-arm_20.2.1.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="U:/CPRE288/final lab/Lab_2" --include_path="C:/ti/TivaWare_C_Series-2.1.4.178" --include_path="C:/ti/ccs1010/ccs/tools/compiler/ti-cgt-arm_20.2.1.LTS/include" --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency="Anothermain.d_raw"  "../Anothermain.c"
+ 
+>> Compilation failure
+subdir_rules.mk:9: recipe for target 'Anothermain.obj' failed
+"../Anothermain.c", line 44: warning #225-D: function "lcd_init" declared implicitly
+"../Anothermain.c", line 45: warning #225-D: function "ir_init" declared implicitly
+"../Anothermain.c", line 47: warning #225-D: function "timer_init" declared implicitly
+"../Anothermain.c", line 48: warning #225-D: function "uart_init" declared implicitly
+"../Anothermain.c", line 49: warning #225-D: function "ping_init" declared implicitly
+"../Anothermain.c", line 50: warning #225-D: function "servo_init" declared implicitly
+"../Anothermain.c", line 52: warning #225-D: function "servo_move" declared implicitly
+"../Anothermain.c", line 59: warning #225-D: function "timer_waitMillis" declared implicitly
+"../Anothermain.c", line 60: warning #225-D: function "sprintf" declared implicitly
+"../Anothermain.c", line 62: warning #225-D: function "uart_sendStr" declared implicitly
+"../Anothermain.c", line 66: warning #225-D: function "ir_read_avgCM" declared implicitly
+"../Anothermain.c", line 80: warning #225-D: function "ping_read" declared implicitly
+"../Anothermain.c", line 83: warning #225-D: function "sprintf" declared implicitly
+"../Anothermain.c", line 86: warning #225-D: function "uart_sendStr" declared implicitly
+"../Anothermain.c", line 90: warning #225-D: function "timer_waitMillis" declared implicitly
+"../Anothermain.c", line 104: error #20: identifier "uint8_t" is undefined
+"../Anothermain.c", line 108: error #20: identifier "uint8_t" is undefined
+"../Anothermain.c", line 138: error #20: identifier "M_PI" is undefined
+"../Anothermain.c", line 160: warning #225-D: function "lcd_printf" declared implicitly
+"../Anothermain.c", line 163: warning #225-D: function "servo_move" declared implicitly
+3 errors detected in the compilation of "../Anothermain.c".
+gmake: *** [Anothermain.obj] Error 1
+Building file: "../adc.c"
+Invoking: ARM Compiler
+"C:/ti/ccs1010/ccs/tools/compiler/ti-cgt-arm_20.2.1.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --include_path="U:/CPRE288/final lab/Lab_2" --include_path="C:/ti/TivaWare_C_Series-2.1.4.178" --include_path="C:/ti/ccs1010/ccs/tools/compiler/ti-cgt-arm_20.2.1.LTS/include" --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi --preproc_with_compile --preproc_dependency="adc.d_raw"  "../adc.c"
+ 
+>> Compilation failure
+subdir_rules.mk:9: recipe for target 'adc.obj' failed
+"../adc.c", line 31: error #20: identifier "BIT0" is undefined
+"../adc.c", line 34: error #20: identifier "PB4" is undefined
+"../adc.c", line 87: error #20: identifier "BIT0" is undefined
+3 errors detected in the compilation of "../adc.c".
+gmake: *** [adc.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****

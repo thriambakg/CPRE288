@@ -1,0 +1,20 @@
+/*
+ * s3-b_Scan.h
+ *
+ *  Created on: Oct 31, 2020
+ *      Author: trg1
+ */
+
+#ifndef S3_B_SCAN_H_
+#define S3_B_SCAN_H_
+
+typedef struct{
+    double pingdist;  // Distance from Ping Sensor
+    double Irdist;    // Raw ADC value from IR sensor
+} s3-b_Scan_t;
+
+void s3-b_init_Scan(void);
+
+void s3-b_Scan(int angle, cyBOT_Scan_t* getScan);
+
+#endif /* S3_B_SCAN_H_ */

@@ -1,0 +1,19 @@
+/*
+ * movement.h
+ *
+ *  Created on: Sep 8, 2020
+ *      Author: trg1
+ */
+
+#ifndef MOVEMENT_H_
+#define MOVEMENT_H_
+
+#include "open_interface.h"
+
+void move_forward(int centimeters);
+void move_backward(int centimeters);
+void turn_left(int degrees);
+void turn_right(int degrees);
+
+
+#endif /* MOVEMENT_H_ */

@@ -1,0 +1,58 @@
+/**
+ * lab3_template.c
+ * 
+ * Template file for CprE 288 lab 3
+ *
+ * @author Zhao Zhang, Chad Nelson, Zachary Glanz
+ * @date 08/14/2016
+ */
+
+#include "lcd.h"
+#include "button.h"
+#include "movement.h"
+#include "cyBot_uart.h"
+#include "open_interface.h"
+/**
+ * main.c
+ * Prints the button that has been pressed
+ */
+int main(void)
+{
+
+    // Hint: You may need to use pointers to return the button that has been pressed
+    lcd_init();
+    button_init();
+    init_button_interrupts();
+    cyBot_uart_init();
+    //checkpoint 4
+    while (1 == 1)
+    {
+    int buttonValue = button_getButton();
+    if buttonValue == 1
+    {
+        cyBot_sendByte("Pressed 1");
+    }
+    else if buttonValue == 2
+    {
+        cyBot_sendByte("Pressed 2");
+    }
+    else if buttonValue == 3
+    {
+        cyBot_sendByte("Pressed 3");
+    }
+    else if buttonValue == 4
+    {
+        cyBot_sendByte("Pressed 4");
+    }
+    else
+    {
+        cyBot_sendByte("0");
+    }
+}
+
+//checkpoint 3
+//    while(1==1){
+//        if(button_event == 1)
+//            lcd_printf("%d", button_num);
+//    }
+}

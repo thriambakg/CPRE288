@@ -1,0 +1,72 @@
+#include "Timer.h"
+#include "lcd.h"
+#include "button.h"
+#include "resetSimulation.h"
+#include "cyBot_uart.h"
+#include "cyBot_Scan.h"
+#include "movement.h"
+#include "open_interface.h"
+
+
+
+void main() //not sure how to do this part
+{
+//        resetSimulationBoard();
+        cyBOT_Scan_t data;
+        //incrementers
+        int angle, j, radial, index = 0;
+        //header for table
+        char header[] = "object #\t angle\t distance\t width\r\n";
+        //data line length
+        char data_line[50];
+        //length of the header above
+        int header_length = 40;
+        //array of values
+        int check = 0;
+        //temp variables be assigned to obstacles arrays
+        int tempangle, tempdistance;
+        //create struct with start degrees, end degrees, and distance
+        struct obstacles {
+            int startangle; //start of angle
+            int radial; //radial degrees
+            int distance; //distance from cybot
+        };
+        struct obstacles values[20];
+
+
+
+        while(1){
+            //this is just for the header
+            for(j=0; j<header_length; j++){cyBot_sendByte(header[j]);}
+
+            //main for loop to increment measured values
+            for (angle=0; angle<=180; angle+=1)
+                {
+                    cyBOT_Scan(angle, &data);// YOUR CODE HERE
+                    if (data.sound_dist < 60) {
+                        radial++;
+                        check = 1;
+                        tempdistance = data.sound_dist;
+                        tempangle = angle;
+                    }
+                    else if (check == 1) {
+                        values[index].radial = radial;
+                        values[index].distance = tempdistance;
+                        values[index].startangle = tempangle;
+                        index++;
+                        radial = 0;
+                        check = 0;
+                    }
+                }
+
+            int w;
+            for (w = 0; w < sizeof values; w++)  {
+                    sprintf(data_line, "%d \t %d \t %d \t %d \r\n", w, angle, values[w].distance, values[w].radial);
+                    char* data_line_pos = data_line;
+                    while(*data_line_pos !='\0'){cyBot_sendByte(*data_line_pos++);}
+            }
+            //for //create second for loop to go through objects found
+
+
+        }
+}
